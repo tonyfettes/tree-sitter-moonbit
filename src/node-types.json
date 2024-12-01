@@ -2898,6 +2898,10 @@
     "named": false
   },
   {
+    "type": "xxx",
+    "named": false
+  },
+  {
     "type": "{",
     "named": false
   },

@@ -164,6 +164,10 @@
             },
             {
               "type": "STRING",
+              "value": "xxx"
+            },
+            {
+              "type": "STRING",
               "value": "open"
             }
           ]

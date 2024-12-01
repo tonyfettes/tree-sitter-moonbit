@@ -68,7 +68,7 @@ module.exports = grammar({
       seq('pub', optional($.pub_attribute))
     ),
 
-    pub_attribute: _ => seq('(', choice('readonly', 'all', 'open'), ')'),
+    pub_attribute: _ => seq('(', choice('readonly', 'all', 'xxx', 'open'), ')'),
 
     derive_item: $ => $.qualified_type_identifier,
 
