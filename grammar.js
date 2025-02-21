@@ -56,6 +56,7 @@ module.exports = grammar({
     $.dot_dot_lt,
     $.dot_dot_eq,
     $.is,
+    $.comma,
   ],
 
   word: $ => $.lowercase_identifier,
@@ -690,7 +691,7 @@ module.exports = grammar({
     ),
 
     continue_expression: $ => seq(
-      'continue', optional($.parameter_label), commaList($.expression)
+      'continue', optional($.parameter_label), sepBy($.comma, $.expression)
     ),
 
     try_expression: $ => seq(
@@ -1096,12 +1097,20 @@ module.exports = grammar({
 })
 
 /**
+ * @param {RuleOrLiteral} separator
+ * @param {Rule} rule
+ * @returns {Rule}
+ */
+function sepBy(separator, rule) {
+  return optional(sepBy1(separator, rule))
+}
+
+/**
  *
  * @param {RuleOrLiteral} separator
  * @param {Rule} rule
  * @returns {SeqRule}
  */
-
 function sepBy1(separator, rule) {
   return seq(
     rule,
@@ -1120,7 +1129,6 @@ function commaList(rule) {
   return optional(commaList1(rule))
 }
 
-
 /**
  *
  * @param {Rule} rule
@@ -1135,7 +1143,6 @@ function commaList1(rule) {
     optional(',')
   );
 }
-
 
 /**
  * @param {Rule} rule

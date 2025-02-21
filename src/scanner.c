@@ -17,23 +17,25 @@ enum TokenType {
   DOT_DOT_LT,
   DOT_DOT_EQ,
   IS,
+  COMMA,
 };
 
 static const char *const token_names[] = {
-    [FLOAT_LITERAL] = "FLOAT_LITERAL",
-    [COMMENT] = "COMMENT",
-    [DOCSTRING] = "DOCSTRING",
-    [PIPE_OPERATOR] = "PIPE_OPERATOR",
-    [DOT] = "DOT",
-    [COLON] = "COLON",
-    [COLON_COLON] = "COLON_COLON",
-    [QUESTION_OPERATOR] = "QUESTION_OPERATOR",
-    [DERIVE] = "DERIVE",
-    [DOT_DOT] = "DOT_DOT",
-    [MULTILINE_STRING_SEPARATOR] = "MULTILINE_STRING_SEPARATOR",
-    [DOT_DOT_LT] = "DOT_DOT_LT",
-    [DOT_DOT_EQ] = "DOT_DOT_EQ",
-    [IS] = "IS",
+  [FLOAT_LITERAL] = "FLOAT_LITERAL",
+  [COMMENT] = "COMMENT",
+  [DOCSTRING] = "DOCSTRING",
+  [PIPE_OPERATOR] = "PIPE_OPERATOR",
+  [DOT] = "DOT",
+  [COLON] = "COLON",
+  [COLON_COLON] = "COLON_COLON",
+  [QUESTION_OPERATOR] = "QUESTION_OPERATOR",
+  [DERIVE] = "DERIVE",
+  [DOT_DOT] = "DOT_DOT",
+  [MULTILINE_STRING_SEPARATOR] = "MULTILINE_STRING_SEPARATOR",
+  [DOT_DOT_LT] = "DOT_DOT_LT",
+  [DOT_DOT_EQ] = "DOT_DOT_EQ",
+  [IS] = "IS",
+  [COMMA] = "COMMA",
 };
 
 void *tree_sitter_moonbit_external_scanner_create() { return NULL; }
@@ -116,6 +118,19 @@ bool tree_sitter_moonbit_external_scanner_scan(void *payload, TSLexer *lexer,
       return false;
     }
     return true;
+  } else if (valid_symbols[COMMA]) {
+    while (iswspace(lexer->lookahead)) {
+      skip(lexer);
+    }
+    if (lexer->lookahead == ',') {
+      advance(lexer);
+      lexer->result_symbol = COMMA;
+      lexer->mark_end(lexer);
+      while (iswspace(lexer->lookahead)) {
+        skip(lexer);
+      }
+      return true;
+    }
   } else if (valid_symbols[PIPE_OPERATOR] || valid_symbols[DOT] ||
              valid_symbols[COLON] || valid_symbols[COLON_COLON] ||
              valid_symbols[QUESTION_OPERATOR] || valid_symbols[DERIVE] ||
