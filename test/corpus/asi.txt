@@ -79,3 +79,67 @@ fn f() -> Result[Unit, String] {
                             (simple_expression
                               (qualified_identifier
                                 (lowercase_identifier)))))))))))))))))
+
+================================================================================
+comma
+================================================================================
+fn main {
+  loop a {
+    _ => {
+      continue 1,
+        2   ,
+3
+    }
+  }
+}
+--------------------------------------------------------------------------------
+
+(structure
+  (structure_item
+    (function_definition
+      (function_identifier
+        (lowercase_identifier))
+      (block_expression
+        (statement_expression
+          (expression
+            (loop_expression
+              (expression
+                (pipeline_expression
+                  (compound_expression
+                    (simple_expression
+                      (qualified_identifier
+                        (lowercase_identifier))))))
+              (matrix_case_clause
+                (pattern
+                  (simple_pattern))
+                (case_clause_body
+                  (expression
+                    (pipeline_expression
+                      (compound_expression
+                        (simple_expression
+                          (nonempty_block_expression
+                            (statement_expression
+                              (continue_expression
+                                (expression
+                                  (pipeline_expression
+                                    (compound_expression
+                                      (simple_expression
+                                        (atomic_expression
+                                          (literal
+                                            (integer_literal)))))))
+                                (comma)
+                                (expression
+                                  (pipeline_expression
+                                    (compound_expression
+                                      (simple_expression
+                                        (atomic_expression
+                                          (literal
+                                            (integer_literal)))))))
+                                (comma)
+                                (expression
+                                  (pipeline_expression
+                                    (compound_expression
+                                      (simple_expression
+                                        (atomic_expression
+                                          (literal
+                                            (integer_literal)))))))))))))))))))))))

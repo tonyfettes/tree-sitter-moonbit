@@ -50,6 +50,7 @@ fn init {
                             (simple_expression
                               (qualified_identifier
                                 (lowercase_identifier))))))
+                      (comma)
                       (expression
                         (pipeline_expression
                           (compound_expression
@@ -133,6 +134,7 @@ fn init {
                             (simple_expression
                               (qualified_identifier
                                 (lowercase_identifier))))))
+                      (comma)
                       (expression
                         (pipeline_expression
                           (compound_expression
@@ -206,6 +208,7 @@ fn init {
                           (simple_expression
                             (qualified_identifier
                               (lowercase_identifier))))))
+                    (comma)
                     (expression
                       (pipeline_expression
                         (compound_expression
