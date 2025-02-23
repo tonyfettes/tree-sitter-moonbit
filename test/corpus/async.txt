@@ -17,6 +17,7 @@ fn run(f : async () -> Unit) -> Unit = "%async.run"
         (type_identifier
           (identifier
             (uppercase_identifier)))
+        (comma)
         (type_identifier
           (identifier
             (uppercase_identifier))
@@ -46,6 +47,7 @@ fn run(f : async () -> Unit) -> Unit = "%async.run"
                           (qualified_type_identifier
                             (identifier
                               (uppercase_identifier))))))))
+                (comma)
                 (type
                   (function_type
                     (type
@@ -161,6 +163,7 @@ fn main {
                                                           (parameters
                                                             (parameter
                                                               (lowercase_identifier))
+                                                            (comma)
                                                             (parameter
                                                               (lowercase_identifier)))
                                                           (block_expression))))))))))))))))))))))))))))))
@@ -219,6 +222,7 @@ fn main {
                                                           (parameters
                                                             (parameter
                                                               (lowercase_identifier))
+                                                            (comma)
                                                             (parameter
                                                               (lowercase_identifier)))
                                                           (block_expression))))))))))))))))))))))))))

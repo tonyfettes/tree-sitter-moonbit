@@ -261,6 +261,7 @@ enum Two[A, B] {
         (type_identifier
           (identifier
             (uppercase_identifier)))
+        (comma)
         (type_identifier
           (identifier
             (uppercase_identifier))))
@@ -500,6 +501,7 @@ trait A {
               (qualified_type_identifier
                 (identifier
                   (uppercase_identifier))))))
+        (comma)
         (trait_method_parameter
           (type
             (apply_type
@@ -535,6 +537,7 @@ trait A {
               (qualified_type_identifier
                 (identifier
                   (uppercase_identifier))))))
+        (comma)
         (trait_method_parameter
           (parameter_label
             (lowercase_identifier))
@@ -545,6 +548,7 @@ trait A {
                 (qualified_type_identifier
                   (identifier
                     (uppercase_identifier)))))))
+        (comma)
         (trait_method_parameter
           (parameter_label
             (lowercase_identifier))
@@ -586,6 +590,7 @@ pub(all) trait A {
               (qualified_type_identifier
                 (identifier
                   (uppercase_identifier))))))
+        (comma)
         (trait_method_parameter
           (parameter_label
             (lowercase_identifier))
@@ -596,6 +601,7 @@ pub(all) trait A {
                 (qualified_type_identifier
                   (identifier
                     (uppercase_identifier)))))))
+        (comma)
         (trait_method_parameter
           (parameter_label
             (lowercase_identifier))
@@ -847,6 +853,7 @@ fn init {
                 (qualified_type_identifier
                   (identifier
                     (uppercase_identifier)))))))
+        (comma)
         (parameter
           (parameter_label
             (lowercase_identifier))
@@ -1013,6 +1020,7 @@ fn init {
                                   (string_literal
                                     (string_fragment
                                       (unescaped_string_fragment))))))))))
+                    (comma)
                     (argument
                       (argument_label
                         (simple_expression

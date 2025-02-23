@@ -30,6 +30,7 @@ enum T {
             (qualified_type_identifier
               (identifier
                 (uppercase_identifier)))))
+        (comma)
         (type
           (apply_type
             (qualified_type_identifier
@@ -42,6 +43,7 @@ enum T {
             (qualified_type_identifier
               (identifier
                 (uppercase_identifier)))))
+        (comma)
         (parameter_label
           (lowercase_identifier))
         (colon)

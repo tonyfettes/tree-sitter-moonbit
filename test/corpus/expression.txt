@@ -188,6 +188,7 @@ fn init() { let a = A::{ ..id, name: "John Doe" } }
                             (simple_expression
                               (qualified_identifier
                                 (lowercase_identifier))))))
+                      (comma)
                       (struct_field_expressions
                         (labeled_expression
                           (lowercase_identifier)
@@ -237,6 +238,7 @@ fn main {
                           (atomic_expression
                             (literal
                               (integer_literal)))))
+                      (comma)
                       (map_entry_expression
                         (literal
                           (string_literal
@@ -247,6 +249,7 @@ fn main {
                           (atomic_expression
                             (literal
                               (integer_literal)))))
+                      (comma)
                       (map_entry_expression
                         (literal
                           (integer_literal))

@@ -714,6 +714,7 @@ fn main {
                               (atomic_expression
                                 (literal
                                   (float_literal)))))))
+                      (comma)
                       (expression
                         (pipeline_expression
                           (compound_expression
@@ -721,6 +722,7 @@ fn main {
                               (atomic_expression
                                 (literal
                                   (float_literal)))))))
+                      (comma)
                       (expression
                         (pipeline_expression
                           (compound_expression
@@ -728,6 +730,7 @@ fn main {
                               (atomic_expression
                                 (literal
                                   (float_literal)))))))
+                      (comma)
                       (expression
                         (pipeline_expression
                           (compound_expression
@@ -735,6 +738,7 @@ fn main {
                               (atomic_expression
                                 (literal
                                   (float_literal)))))))
+                      (comma)
                       (expression
                         (pipeline_expression
                           (compound_expression
@@ -742,6 +746,7 @@ fn main {
                               (atomic_expression
                                 (literal
                                   (float_literal)))))))
+                      (comma)
                       (expression
                         (pipeline_expression
                           (compound_expression
@@ -749,6 +754,7 @@ fn main {
                               (atomic_expression
                                 (literal
                                   (float_literal)))))))
+                      (comma)
                       (expression
                         (pipeline_expression
                           (compound_expression
@@ -756,6 +762,7 @@ fn main {
                               (atomic_expression
                                 (literal
                                   (float_literal)))))))
+                      (comma)
                       (expression
                         (pipeline_expression
                           (compound_expression
@@ -763,6 +770,7 @@ fn main {
                               (atomic_expression
                                 (literal
                                   (float_literal)))))))
+                      (comma)
                       (expression
                         (pipeline_expression
                           (compound_expression
@@ -770,6 +778,7 @@ fn main {
                               (atomic_expression
                                 (literal
                                   (float_literal)))))))
+                      (comma)
                       (expression
                         (pipeline_expression
                           (compound_expression
@@ -777,6 +786,7 @@ fn main {
                               (atomic_expression
                                 (literal
                                   (float_literal)))))))
+                      (comma)
                       (expression
                         (pipeline_expression
                           (compound_expression
@@ -795,6 +805,7 @@ fn main {
                                   (atomic_expression
                                     (literal
                                       (integer_literal)))))))))
+                      (comma)
                       (expression
                         (pipeline_expression
                           (compound_expression
@@ -813,6 +824,7 @@ fn main {
                                   (atomic_expression
                                     (literal
                                       (integer_literal)))))))))
+                      (comma)
                       (expression
                         (pipeline_expression
                           (compound_expression
@@ -831,6 +843,7 @@ fn main {
                                   (atomic_expression
                                     (literal
                                       (integer_literal)))))))))
+                      (comma)
                       (expression
                         (pipeline_expression
                           (compound_expression
@@ -838,6 +851,7 @@ fn main {
                               (atomic_expression
                                 (literal
                                   (float_literal)))))))
+                      (comma)
                       (expression
                         (pipeline_expression
                           (compound_expression
@@ -845,10 +859,12 @@ fn main {
                               (atomic_expression
                                 (literal
                                   (float_literal)))))))
+                      (comma)
                       (expression
                         (pipeline_expression
                           (compound_expression
                             (simple_expression
                               (atomic_expression
                                 (literal
-                                  (float_literal))))))))))))))))))
+                                  (float_literal)))))))
+                      (comma))))))))))))

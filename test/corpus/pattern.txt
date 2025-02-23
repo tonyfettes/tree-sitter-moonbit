@@ -85,6 +85,7 @@ fn main {
                       (constructor_pattern_argument
                         (parameter_label
                           (lowercase_identifier)))
+                      (comma)
                       (constructor_pattern_argument
                         (pattern
                           (simple_pattern
@@ -105,6 +106,7 @@ fn main {
                         (pattern
                           (simple_pattern
                             (lowercase_identifier))))
+                      (comma)
                       (constructor_pattern_argument
                         (pattern
                           (simple_pattern
@@ -128,6 +130,7 @@ fn main {
                               (simple_pattern
                                 (lowercase_identifier)))
                             (lowercase_identifier))))
+                      (comma)
                       (constructor_pattern_argument
                         (pattern
                           (simple_pattern
@@ -610,6 +613,7 @@ fn main {
                           (simple_pattern
                             (literal
                               (integer_literal)))))
+                      (comma)
                       (dot_dot))))
                 (case_clause_body
                   (expression
@@ -642,6 +646,7 @@ fn main {
                           (simple_pattern
                             (literal
                               (integer_literal)))))
+                      (comma)
                       (map_entry_pattern
                         (literal
                           (string_literal
@@ -685,6 +690,7 @@ fn main {
                           (simple_pattern
                             (literal
                               (integer_literal)))))
+                      (comma)
                       (map_entry_pattern
                         (literal
                           (string_literal
@@ -695,6 +701,7 @@ fn main {
                           (simple_pattern
                             (literal
                               (integer_literal)))))
+                      (comma)
                       (map_entry_pattern
                         (literal
                           (string_literal
@@ -776,6 +783,7 @@ fn main {
                         (pattern
                           (simple_pattern
                             (lowercase_identifier))))
+                      (comma)
                       (array_sub_pattern
                         (pattern
                           (simple_pattern
@@ -794,6 +802,7 @@ fn main {
                         (pattern
                           (simple_pattern
                             (lowercase_identifier))))
+                      (comma)
                       (array_sub_pattern
                         (pattern
                           (simple_pattern
@@ -812,6 +821,7 @@ fn main {
                         (pattern
                           (simple_pattern
                             (lowercase_identifier))))
+                      (comma)
                       (array_sub_pattern
                         (pattern
                           (as_pattern
@@ -833,6 +843,7 @@ fn main {
                         (pattern
                           (simple_pattern
                             (lowercase_identifier))))
+                      (comma)
                       (array_sub_pattern
                         (dot_dot)
                         (lowercase_identifier)))))
@@ -850,6 +861,7 @@ fn main {
                         (pattern
                           (simple_pattern
                             (dot_dot))))
+                      (comma)
                       (array_sub_pattern
                         (pattern
                           (simple_pattern
@@ -871,6 +883,7 @@ fn main {
                               (simple_pattern
                                 (dot_dot)))
                             (lowercase_identifier))))
+                      (comma)
                       (array_sub_pattern
                         (pattern
                           (simple_pattern
@@ -888,6 +901,7 @@ fn main {
                       (array_sub_pattern
                         (dot_dot)
                         (lowercase_identifier))
+                      (comma)
                       (array_sub_pattern
                         (pattern
                           (simple_pattern
@@ -906,10 +920,12 @@ fn main {
                         (pattern
                           (simple_pattern
                             (lowercase_identifier))))
+                      (comma)
                       (array_sub_pattern
                         (pattern
                           (simple_pattern
                             (dot_dot))))
+                      (comma)
                       (array_sub_pattern
                         (pattern
                           (simple_pattern
@@ -928,6 +944,7 @@ fn main {
                         (pattern
                           (simple_pattern
                             (lowercase_identifier))))
+                      (comma)
                       (array_sub_pattern
                         (pattern
                           (as_pattern
@@ -935,6 +952,7 @@ fn main {
                               (simple_pattern
                                 (dot_dot)))
                             (lowercase_identifier))))
+                      (comma)
                       (array_sub_pattern
                         (pattern
                           (simple_pattern
@@ -953,9 +971,11 @@ fn main {
                         (pattern
                           (simple_pattern
                             (lowercase_identifier))))
+                      (comma)
                       (array_sub_pattern
                         (dot_dot)
                         (lowercase_identifier))
+                      (comma)
                       (array_sub_pattern
                         (pattern
                           (simple_pattern

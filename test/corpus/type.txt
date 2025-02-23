@@ -272,6 +272,7 @@ impl Show for T with output(self : T, logger : &Logger) -> Unit {
                 (qualified_type_identifier
                   (identifier
                     (uppercase_identifier)))))))
+        (comma)
         (parameter
           (lowercase_identifier)
           (type_annotation

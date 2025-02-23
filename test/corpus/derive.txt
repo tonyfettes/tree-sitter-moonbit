@@ -16,6 +16,7 @@ type X derive (A, B)
             (qualified_type_identifier
               (identifier
                 (uppercase_identifier)))))
+        (comma)
         (derive_item
           (type_name
             (qualified_type_identifier
@@ -41,6 +42,7 @@ struct A {
             (qualified_type_identifier
               (identifier
                 (uppercase_identifier)))))
+        (comma)
         (derive_item
           (type_name
             (qualified_type_identifier
@@ -66,6 +68,7 @@ enum A {
             (qualified_type_identifier
               (identifier
                 (uppercase_identifier)))))
+        (comma)
         (derive_item
           (type_name
             (qualified_type_identifier
@@ -126,31 +129,37 @@ enum A {
             (qualified_type_identifier
               (identifier
                 (uppercase_identifier)))))
+        (comma)
         (derive_item
           (type_name
             (qualified_type_identifier
               (identifier
                 (uppercase_identifier)))))
+        (comma)
         (derive_item
           (type_name
             (qualified_type_identifier
               (identifier
                 (uppercase_identifier)))))
+        (comma)
         (derive_item
           (type_name
             (qualified_type_identifier
               (identifier
                 (uppercase_identifier)))))
+        (comma)
         (derive_item
           (type_name
             (qualified_type_identifier
               (identifier
                 (uppercase_identifier)))))
+        (comma)
         (derive_item
           (type_name
             (qualified_type_identifier
               (identifier
                 (uppercase_identifier)))))
+        (comma)
         (derive_item
           (type_name
             (qualified_type_identifier

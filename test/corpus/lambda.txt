@@ -169,6 +169,7 @@ fn init {
                 (simple_pattern
                   (literal
                     (boolean_literal))))
+              (comma)
               (pattern
                 (simple_pattern))
               (case_clause_body
@@ -182,6 +183,7 @@ fn init {
             (matrix_case_clause
               (pattern
                 (simple_pattern))
+              (comma)
               (pattern
                 (simple_pattern
                   (literal
@@ -197,6 +199,7 @@ fn init {
             (matrix_case_clause
               (pattern
                 (simple_pattern))
+              (comma)
               (pattern
                 (simple_pattern))
               (case_clause_body

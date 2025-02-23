@@ -26,6 +26,7 @@ fn f() -> Result[Unit, String] {
                   (qualified_type_identifier
                     (identifier
                       (uppercase_identifier)))))
+              (comma)
               (type
                 (apply_type
                   (qualified_type_identifier
@@ -55,6 +56,7 @@ fn f() -> Result[Unit, String] {
                                 (atomic_expression
                                   (literal
                                     (integer_literal))))))))
+                      (comma)
                       (argument
                         (expression
                           (pipeline_expression

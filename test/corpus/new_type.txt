@@ -88,6 +88,7 @@ let d_mile: Length[Mile] = Length(16)
                       (qualified_type_identifier
                         (identifier
                           (uppercase_identifier))))))))))
+        (comma)
         (parameter
           (lowercase_identifier)
           (type_annotation

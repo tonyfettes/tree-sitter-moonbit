@@ -32,6 +32,7 @@ impl Show for T? with output(self : T, logger : &Logger) -> Unit {
                 (qualified_type_identifier
                   (identifier
                     (uppercase_identifier)))))))
+        (comma)
         (parameter
           (lowercase_identifier)
           (type_annotation
@@ -90,6 +91,7 @@ impl Show for (Int) -> Unit with output(self : T, logger : &Logger) -> Unit {
                 (qualified_type_identifier
                   (identifier
                     (uppercase_identifier)))))))
+        (comma)
         (parameter
           (lowercase_identifier)
           (type_annotation
@@ -130,6 +132,7 @@ impl Show for (A, B) with output(self : T, logger : &Logger) -> Unit {
               (qualified_type_identifier
                 (identifier
                   (uppercase_identifier)))))
+          (comma)
           (type
             (apply_type
               (qualified_type_identifier
@@ -147,6 +150,7 @@ impl Show for (A, B) with output(self : T, logger : &Logger) -> Unit {
                 (qualified_type_identifier
                   (identifier
                     (uppercase_identifier)))))))
+        (comma)
         (parameter
           (lowercase_identifier)
           (type_annotation

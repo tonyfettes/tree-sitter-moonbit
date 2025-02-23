@@ -186,6 +186,7 @@ fn init {
                               (atomic_expression
                                 (literal
                                   (integer_literal)))))))
+                      (comma)
                       (expression
                         (pipeline_expression
                           (compound_expression
@@ -193,6 +194,7 @@ fn init {
                               (atomic_expression
                                 (literal
                                   (integer_literal)))))))
+                      (comma)
                       (expression
                         (pipeline_expression
                           (compound_expression
@@ -200,6 +202,7 @@ fn init {
                               (atomic_expression
                                 (literal
                                   (integer_literal)))))))
+                      (comma)
                       (expression
                         (pipeline_expression
                           (compound_expression
@@ -207,6 +210,7 @@ fn init {
                               (atomic_expression
                                 (literal
                                   (integer_literal)))))))
+                      (comma)
                       (expression
                         (pipeline_expression
                           (compound_expression
@@ -342,6 +346,7 @@ fn init {
                               (atomic_expression
                                 (literal
                                   (integer_literal)))))))
+                      (comma)
                       (expression
                         (pipeline_expression
                           (compound_expression
@@ -349,6 +354,7 @@ fn init {
                               (atomic_expression
                                 (literal
                                   (integer_literal)))))))
+                      (comma)
                       (expression
                         (pipeline_expression
                           (compound_expression
@@ -356,6 +362,7 @@ fn init {
                               (atomic_expression
                                 (literal
                                   (integer_literal)))))))
+                      (comma)
                       (expression
                         (pipeline_expression
                           (compound_expression
@@ -363,6 +370,7 @@ fn init {
                               (atomic_expression
                                 (literal
                                   (integer_literal)))))))
+                      (comma)
                       (expression
                         (pipeline_expression
                           (compound_expression
