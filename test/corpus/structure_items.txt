@@ -12,17 +12,23 @@ type X[t]
     (type_definition
       (identifier
         (uppercase_identifier))))
+  (semicolon
+    (automatic_semicolon))
   (structure_item
     (type_definition
       (visibility)
       (identifier
         (uppercase_identifier))))
+  (semicolon
+    (automatic_semicolon))
   (structure_item
     (type_definition
       (visibility
         (pub_attribute))
       (identifier
         (uppercase_identifier))))
+  (semicolon
+    (automatic_semicolon))
   (structure_item
     (type_definition
       (identifier
@@ -55,6 +61,8 @@ type! X {
     (error_type_definition
       (identifier
         (uppercase_identifier))))
+  (semicolon
+    (automatic_semicolon))
   (structure_item
     (error_type_definition
       (identifier
@@ -64,66 +72,88 @@ type! X {
           (qualified_type_identifier
             (identifier
               (uppercase_identifier)))))))
+  (semicolon
+    (automatic_semicolon))
   (structure_item
     (error_type_definition
       (visibility)
       (identifier
         (uppercase_identifier))))
+  (semicolon
+    (automatic_semicolon))
   (structure_item
     (error_type_definition
       (visibility
         (pub_attribute))
       (identifier
         (uppercase_identifier))))
+  (semicolon
+    (automatic_semicolon))
   (structure_item
     (error_type_definition
       (identifier
         (uppercase_identifier))
       (enum_constructor
         (uppercase_identifier)
-        (type
-          (apply_type
-            (qualified_type_identifier
-              (identifier
-                (uppercase_identifier))))))
+        (constructor_parameter
+          (type
+            (apply_type
+              (qualified_type_identifier
+                (identifier
+                  (uppercase_identifier)))))))
+      (semicolon
+        (automatic_semicolon))
       (enum_constructor
         (uppercase_identifier)
-        (type
-          (apply_type
-            (qualified_type_identifier
-              (identifier
-                (uppercase_identifier))))))))
+        (constructor_parameter
+          (type
+            (apply_type
+              (qualified_type_identifier
+                (identifier
+                  (uppercase_identifier)))))))
+      (semicolon
+        (automatic_semicolon))))
+  (semicolon
+    (automatic_semicolon))
   (structure_item
     (error_type_definition
       (identifier
         (uppercase_identifier))
       (derive_directive
-        (derive)
+        (derive_keyword)
         (derive_item
           (type_name
             (qualified_type_identifier
               (identifier
                 (uppercase_identifier))))))))
+  (semicolon
+    (automatic_semicolon))
   (structure_item
     (error_type_definition
       (identifier
         (uppercase_identifier))
       (enum_constructor
         (uppercase_identifier)
-        (type
-          (apply_type
-            (qualified_type_identifier
-              (identifier
-                (uppercase_identifier))))))
+        (constructor_parameter
+          (type
+            (apply_type
+              (qualified_type_identifier
+                (identifier
+                  (uppercase_identifier)))))))
+      (semicolon
+        (automatic_semicolon))
       (enum_constructor
         (uppercase_identifier)
-        (type
-          (apply_type
-            (qualified_type_identifier
-              (identifier
-                (uppercase_identifier))))))
+        (constructor_parameter
+          (type
+            (apply_type
+              (qualified_type_identifier
+                (identifier
+                  (uppercase_identifier)))))))
+      (semicolon
+        (automatic_semicolon))
       (derive_directive
-        (derive)
+        (derive_keyword)
         (derive_item
           (type_name
             (qualified_type_identifier
@@ -166,6 +196,8 @@ struct Color {
             (qualified_type_identifier
               (identifier
                 (uppercase_identifier))))))))
+  (semicolon
+    (automatic_semicolon))
   (structure_item
     (struct_definition
       (identifier
@@ -188,6 +220,8 @@ struct Color {
                   (qualified_type_identifier
                     (identifier
                       (uppercase_identifier)))))))))
+      (semicolon
+        (automatic_semicolon))
       (struct_field_declaration
         (lowercase_identifier)
         (colon)
@@ -201,7 +235,11 @@ struct Color {
                 (apply_type
                   (qualified_type_identifier
                     (identifier
-                      (uppercase_identifier)))))))))))
+                      (uppercase_identifier)))))))))
+      (semicolon
+        (automatic_semicolon))))
+  (semicolon
+    (automatic_semicolon))
   (structure_item
     (struct_definition
       (identifier
@@ -214,6 +252,8 @@ struct Color {
             (qualified_type_identifier
               (identifier
                 (uppercase_identifier))))))
+      (semicolon
+        (automatic_semicolon))
       (struct_field_declaration
         (lowercase_identifier)
         (colon)
@@ -222,6 +262,8 @@ struct Color {
             (qualified_type_identifier
               (identifier
                 (uppercase_identifier))))))
+      (semicolon
+        (automatic_semicolon))
       (struct_field_declaration
         (lowercase_identifier)
         (colon)
@@ -229,7 +271,9 @@ struct Color {
           (apply_type
             (qualified_type_identifier
               (identifier
-                (uppercase_identifier)))))))))
+                (uppercase_identifier))))))
+      (semicolon
+        (automatic_semicolon)))))
 
 ================================================================================
 Enum definitions
@@ -247,12 +291,16 @@ enum Two[A, B] {
     (enum_definition
       (identifier
         (uppercase_identifier))))
+  (semicolon
+    (automatic_semicolon))
   (structure_item
     (enum_definition
       (identifier
         (uppercase_identifier))
       (enum_constructor
         (uppercase_identifier))))
+  (semicolon
+    (automatic_semicolon))
   (structure_item
     (enum_definition
       (identifier
@@ -267,18 +315,24 @@ enum Two[A, B] {
             (uppercase_identifier))))
       (enum_constructor
         (uppercase_identifier)
-        (type
-          (apply_type
-            (qualified_type_identifier
-              (identifier
-                (uppercase_identifier))))))
+        (constructor_parameter
+          (type
+            (apply_type
+              (qualified_type_identifier
+                (identifier
+                  (uppercase_identifier)))))))
+      (semicolon
+        (automatic_semicolon))
       (enum_constructor
         (uppercase_identifier)
-        (type
-          (apply_type
-            (qualified_type_identifier
-              (identifier
-                (uppercase_identifier)))))))))
+        (constructor_parameter
+          (type
+            (apply_type
+              (qualified_type_identifier
+                (identifier
+                  (uppercase_identifier)))))))
+      (semicolon
+        (automatic_semicolon)))))
 
 ================================================================================
 value definitions
@@ -298,6 +352,8 @@ pub let y: Int = 42
               (atomic_expression
                 (literal
                   (integer_literal)))))))))
+  (semicolon
+    (automatic_semicolon))
   (structure_item
     (value_definition
       (pub)
@@ -360,12 +416,16 @@ fn &Trait::method(self: Self) -> Int { 42 }
                 (simple_expression
                   (qualified_identifier
                     (lowercase_identifier))))))))))
+  (semicolon
+    (automatic_semicolon))
   (structure_item
     (function_definition
       (function_identifier
         (lowercase_identifier))
       (parameters)
       (block_expression)))
+  (semicolon
+    (automatic_semicolon))
   (structure_item
     (function_definition
       (function_identifier
@@ -388,6 +448,8 @@ fn &Trait::method(self: Self) -> Int { 42 }
                 (identifier
                   (uppercase_identifier)))))))
       (block_expression)))
+  (semicolon
+    (automatic_semicolon))
   (structure_item
     (function_definition
       (function_identifier
@@ -415,6 +477,8 @@ fn &Trait::method(self: Self) -> Int { 42 }
                 (identifier
                   (uppercase_identifier)))))))
       (block_expression)))
+  (semicolon
+    (automatic_semicolon))
   (structure_item
     (function_definition
       (function_identifier
@@ -477,7 +541,9 @@ trait A {
             (apply_type
               (qualified_type_identifier
                 (identifier
-                  (uppercase_identifier))))))))))
+                  (uppercase_identifier)))))))
+      (semicolon
+        (automatic_semicolon)))))
 
 ================================================================================
 Trait definitions
@@ -513,7 +579,9 @@ trait A {
             (apply_type
               (qualified_type_identifier
                 (identifier
-                  (uppercase_identifier))))))))))
+                  (uppercase_identifier)))))))
+      (semicolon
+        (automatic_semicolon)))))
 
 ================================================================================
 Trait definitions with labeled parameters
@@ -564,7 +632,9 @@ trait A {
             (apply_type
               (qualified_type_identifier
                 (identifier
-                  (uppercase_identifier))))))))))
+                  (uppercase_identifier)))))))
+      (semicolon
+        (automatic_semicolon)))))
 
 ================================================================================
 Trait definitions with visibility
@@ -617,7 +687,9 @@ pub(all) trait A {
             (apply_type
               (qualified_type_identifier
                 (identifier
-                  (uppercase_identifier))))))))))
+                  (uppercase_identifier)))))))
+      (semicolon
+        (automatic_semicolon)))))
 
 ================================================================================
 Test
@@ -681,7 +753,9 @@ trait A: B + Compare {
             (apply_type
               (qualified_type_identifier
                 (identifier
-                  (uppercase_identifier))))))))))
+                  (uppercase_identifier)))))))
+      (semicolon
+        (automatic_semicolon)))))
 
 ================================================================================
 Default implementations for methods in trait
@@ -722,6 +796,8 @@ fn repr(self:MyInt) -> String {
               (qualified_type_identifier
                 (identifier
                   (uppercase_identifier)))))))
+      (semicolon
+        (automatic_semicolon))
       (trait_method_declaration
         (function_identifier
           (lowercase_identifier))
@@ -737,7 +813,11 @@ fn repr(self:MyInt) -> String {
               (qualified_type_identifier
                 (identifier
                   (uppercase_identifier)))))))
-      (comment)))
+      (comment)
+      (semicolon
+        (automatic_semicolon))))
+  (semicolon
+    (automatic_semicolon))
   (structure_item
     (impl_definition
       (type_name
@@ -774,7 +854,11 @@ fn repr(self:MyInt) -> String {
                       (qualified_identifier
                         (lowercase_identifier)))
                     (dot_identifier
-                      (dot)))))))))))
+                      (dot_lowercase_identifier))))))))
+        (semicolon
+          (automatic_semicolon)))))
+  (semicolon
+    (automatic_semicolon))
   (structure_item
     (type_definition
       (identifier
@@ -784,6 +868,8 @@ fn repr(self:MyInt) -> String {
           (qualified_type_identifier
             (identifier
               (uppercase_identifier)))))))
+  (semicolon
+    (automatic_semicolon))
   (structure_item
     (function_definition
       (function_identifier
@@ -819,7 +905,9 @@ fn repr(self:MyInt) -> String {
                         (accessor
                           (dot))))
                     (dot_identifier
-                      (dot))))))))))))
+                      (dot_lowercase_identifier))))))))
+        (semicolon
+          (automatic_semicolon))))))
 
 ================================================================================
 Labelled argument and optional argument
@@ -899,7 +987,7 @@ fn init {
                       (constructor_pattern_argument
                         (pattern
                           (simple_pattern))))))
-                (case_clause_body
+                (statement_expression
                   (expression
                     (pipeline_expression
                       (compound_expression
@@ -926,13 +1014,15 @@ fn init {
                                                       (lowercase_identifier)))))))
                                           (string_fragment
                                             (unescaped_string_fragment))))))))))))))))
+              (semicolon
+                (automatic_semicolon))
               (case_clause
                 (pattern
                   (simple_pattern
                     (constructor_pattern
                       (constructor_expression
                         (uppercase_identifier)))))
-                (case_clause_body
+                (statement_expression
                   (expression
                     (pipeline_expression
                       (compound_expression
@@ -967,7 +1057,13 @@ fn init {
                                                     (qualified_identifier
                                                       (lowercase_identifier)))))))
                                           (string_fragment
-                                            (unescaped_string_fragment))))))))))))))))))))))
+                                            (unescaped_string_fragment))))))))))))))))
+              (semicolon
+                (automatic_semicolon)))))
+        (semicolon
+          (automatic_semicolon)))))
+  (semicolon
+    (automatic_semicolon))
   (structure_item
     (function_definition
       (function_identifier
@@ -997,6 +1093,8 @@ fn init {
                                     (string_fragment
                                       (unescaped_string_fragment))))))))))))))))
         (comment)
+        (semicolon
+          (automatic_semicolon))
         (statement_expression
           (expression
             (pipeline_expression
@@ -1043,7 +1141,9 @@ fn init {
                                             (literal
                                               (string_literal
                                                 (string_fragment
-                                                  (unescaped_string_fragment))))))))))))))))))))))))))
+                                                  (unescaped_string_fragment))))))))))))))))))))))
+        (semicolon
+          (automatic_semicolon))))))
 
 ================================================================================
 impl
@@ -1149,6 +1249,8 @@ extern "c" fn ffi(a: Int) = "return 0"
         (string_literal
           (string_fragment
             (unescaped_string_fragment))))))
+  (semicolon
+    (automatic_semicolon))
   (structure_item
     (function_definition
       (visibility)
@@ -1183,6 +1285,8 @@ extern "c" fn ffi(a: Int) = "return 0"
           (multiline_string_fragment
             (multiline_string_separator)
             (multiline_string_content))))))
+  (semicolon
+    (automatic_semicolon))
   (structure_item
     (function_definition
       (visibility)
@@ -1207,6 +1311,8 @@ extern "c" fn ffi(a: Int) = "return 0"
           (multiline_string_fragment
             (multiline_string_separator)
             (multiline_string_content))))))
+  (semicolon
+    (automatic_semicolon))
   (structure_item
     (function_definition
       (external_linkage
@@ -1301,7 +1407,7 @@ pub fn Tensor::compile[T](self : Tensor[T]) -> @expr.Expr {
             (qualified_type_identifier
               (package_identifier)
               (dot_identifier
-                (dot))))))
+                (dot_uppercase_identifier))))))
       (block_expression
         (statement_expression
           (struct_definition
@@ -1321,7 +1427,9 @@ pub fn Tensor::compile[T](self : Tensor[T]) -> @expr.Expr {
                         (qualified_type_identifier
                           (package_identifier)
                           (dot_identifier
-                            (dot)))))))))
+                            (dot_uppercase_identifier)))))))))
+            (semicolon
+              (automatic_semicolon))
             (struct_field_declaration
               (lowercase_identifier)
               (colon)
@@ -1342,6 +1450,8 @@ pub fn Tensor::compile[T](self : Tensor[T]) -> @expr.Expr {
                               (qualified_type_identifier
                                 (identifier
                                   (uppercase_identifier))))))))))))
+            (semicolon
+              (automatic_semicolon))
             (struct_field_declaration
               (lowercase_identifier)
               (colon)
@@ -1349,7 +1459,11 @@ pub fn Tensor::compile[T](self : Tensor[T]) -> @expr.Expr {
                 (apply_type
                   (qualified_type_identifier
                     (identifier
-                      (uppercase_identifier))))))))
+                      (uppercase_identifier))))))
+            (semicolon
+              (automatic_semicolon))))
+        (semicolon
+          (automatic_semicolon))
         (statement_expression
           (named_lambda_expression
             (lowercase_identifier)
@@ -1369,8 +1483,10 @@ pub fn Tensor::compile[T](self : Tensor[T]) -> @expr.Expr {
                   (qualified_type_identifier
                     (package_identifier)
                     (dot_identifier
-                      (dot))))))
+                      (dot_uppercase_identifier))))))
             (block_expression)))
+        (semicolon
+          (automatic_semicolon))
         (statement_expression
           (expression
             (pipeline_expression
@@ -1386,7 +1502,9 @@ pub fn Tensor::compile[T](self : Tensor[T]) -> @expr.Expr {
                           (compound_expression
                             (simple_expression
                               (qualified_identifier
-                                (lowercase_identifier)))))))))))))))))
+                                (lowercase_identifier)))))))))))))
+        (semicolon
+          (automatic_semicolon))))))
 
 ================================================================================
 Type alias definitions
@@ -1407,6 +1525,8 @@ typealias X[t] = Y[T]
           (qualified_type_identifier
             (identifier
               (uppercase_identifier)))))))
+  (semicolon
+    (automatic_semicolon))
   (structure_item
     (type_alias_definition
       (visibility)
@@ -1417,6 +1537,8 @@ typealias X[t] = Y[T]
           (qualified_type_identifier
             (identifier
               (uppercase_identifier)))))))
+  (semicolon
+    (automatic_semicolon))
   (structure_item
     (type_alias_definition
       (visibility
@@ -1428,6 +1550,8 @@ typealias X[t] = Y[T]
           (qualified_type_identifier
             (identifier
               (uppercase_identifier)))))))
+  (semicolon
+    (automatic_semicolon))
   (structure_item
     (type_alias_definition
       (identifier

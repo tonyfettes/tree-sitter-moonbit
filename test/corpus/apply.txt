@@ -34,6 +34,8 @@ fn init {
                               (atomic_expression
                                 (literal
                                   (integer_literal))))))))))))))
+        (semicolon
+          (automatic_semicolon))
         (statement_expression
           (expression
             (pipeline_expression
@@ -69,6 +71,8 @@ fn init {
                               (atomic_expression
                                 (literal
                                   (integer_literal))))))))))))))
+        (semicolon
+          (automatic_semicolon))
         (statement_expression
           (expression
             (pipeline_expression
@@ -85,7 +89,7 @@ fn init {
                                   (literal
                                     (integer_literal)))))))))
                     (dot_identifier
-                      (dot))
+                      (dot_lowercase_identifier))
                     (argument
                       (expression
                         (pipeline_expression
@@ -94,6 +98,8 @@ fn init {
                               (atomic_expression
                                 (literal
                                   (integer_literal))))))))))))))
+        (semicolon
+          (automatic_semicolon))
         (statement_expression
           (expression
             (pipeline_expression
@@ -104,7 +110,7 @@ fn init {
                       (qualified_identifier
                         (lowercase_identifier)))
                     (dot_identifier
-                      (dot))
+                      (dot_lowercase_identifier))
                     (argument
                       (expression
                         (pipeline_expression
@@ -113,6 +119,8 @@ fn init {
                               (atomic_expression
                                 (literal
                                   (integer_literal))))))))))))))
+        (semicolon
+          (automatic_semicolon))
         (statement_expression
           (expression
             (pipeline_expression
@@ -132,6 +140,8 @@ fn init {
                               (atomic_expression
                                 (literal
                                   (integer_literal))))))))))))))
+        (semicolon
+          (automatic_semicolon))
         (statement_expression
           (expression
             (pipeline_expression
@@ -156,7 +166,9 @@ fn init {
                             (simple_expression
                               (atomic_expression
                                 (literal
-                                  (integer_literal))))))))))))))))))
+                                  (integer_literal))))))))))))))
+        (semicolon
+          (automatic_semicolon))))))
 
 ================================================================================
 apply expression with labeled argument
@@ -206,6 +218,8 @@ fn init {
                               (atomic_expression
                                 (literal
                                   (integer_literal))))))))))))))
+        (semicolon
+          (automatic_semicolon))
         (statement_expression
           (expression
             (pipeline_expression
@@ -229,6 +243,8 @@ fn init {
                         (simple_expression
                           (qualified_identifier
                             (lowercase_identifier)))))))))))
+        (semicolon
+          (automatic_semicolon))
         (statement_expression
           (expression
             (pipeline_expression
@@ -259,6 +275,8 @@ fn init {
                               (atomic_expression
                                 (literal
                                   (integer_literal))))))))))))))
+        (semicolon
+          (automatic_semicolon))
         (statement_expression
           (expression
             (pipeline_expression
@@ -289,6 +307,8 @@ fn init {
                             (simple_expression
                               (constructor_expression
                                 (uppercase_identifier)))))))))))))
+        (semicolon
+          (automatic_semicolon))
         (statement_expression
           (expression
             (pipeline_expression
@@ -325,7 +345,9 @@ fn init {
                                         (simple_expression
                                           (atomic_expression
                                             (literal
-                                              (integer_literal))))))))))))))))))))))))
+                                              (integer_literal))))))))))))))))))))
+        (semicolon
+          (automatic_semicolon))))))
 
 ================================================================================
 dot apply with labeled argument
@@ -357,7 +379,7 @@ fn main {
                       (qualified_identifier
                         (lowercase_identifier)))
                     (dot_identifier
-                      (dot))
+                      (dot_lowercase_identifier))
                     (argument
                       (expression
                         (pipeline_expression
@@ -379,6 +401,8 @@ fn main {
                               (atomic_expression
                                 (literal
                                   (integer_literal))))))))))))))
+        (semicolon
+          (automatic_semicolon))
         (statement_expression
           (expression
             (pipeline_expression
@@ -389,7 +413,7 @@ fn main {
                       (qualified_identifier
                         (lowercase_identifier)))
                     (dot_identifier
-                      (dot))
+                      (dot_lowercase_identifier))
                     (argument
                       (expression
                         (pipeline_expression
@@ -404,6 +428,8 @@ fn main {
                         (simple_expression
                           (qualified_identifier
                             (lowercase_identifier)))))))))))
+        (semicolon
+          (automatic_semicolon))
         (statement_expression
           (expression
             (pipeline_expression
@@ -414,7 +440,7 @@ fn main {
                       (qualified_identifier
                         (lowercase_identifier)))
                     (dot_identifier
-                      (dot))
+                      (dot_lowercase_identifier))
                     (argument
                       (expression
                         (pipeline_expression
@@ -436,6 +462,8 @@ fn main {
                               (atomic_expression
                                 (literal
                                   (integer_literal))))))))))))))
+        (semicolon
+          (automatic_semicolon))
         (statement_expression
           (expression
             (pipeline_expression
@@ -446,7 +474,7 @@ fn main {
                       (qualified_identifier
                         (lowercase_identifier)))
                     (dot_identifier
-                      (dot))
+                      (dot_lowercase_identifier))
                     (argument
                       (expression
                         (pipeline_expression
@@ -468,6 +496,8 @@ fn main {
                             (simple_expression
                               (constructor_expression
                                 (uppercase_identifier)))))))))))))
+        (semicolon
+          (automatic_semicolon))
         (statement_expression
           (expression
             (pipeline_expression
@@ -478,7 +508,7 @@ fn main {
                       (qualified_identifier
                         (lowercase_identifier)))
                     (dot_identifier
-                      (dot))
+                      (dot_lowercase_identifier))
                     (argument
                       (expression
                         (pipeline_expression
@@ -507,6 +537,8 @@ fn main {
                                           (atomic_expression
                                             (literal
                                               (integer_literal))))))))))))))))))))
+        (semicolon
+          (automatic_semicolon))
         (statement_expression
           (expression
             (pipeline_expression
@@ -517,7 +549,7 @@ fn main {
                       (qualified_identifier
                         (lowercase_identifier)))
                     (dot_identifier
-                      (dot))
+                      (dot_lowercase_identifier))
                     (argument
                       (expression
                         (pipeline_expression
@@ -531,9 +563,11 @@ fn main {
                                         (lowercase_identifier)))
                                     (accessor
                                       (dot_identifier
-                                        (dot)))))
+                                        (dot_lowercase_identifier)))))
                                 (dot_identifier
-                                  (dot))))))))))))))))))
+                                  (dot_lowercase_identifier))))))))))))))
+        (semicolon
+          (automatic_semicolon))))))
 
 ================================================================================
 dot apply with labeled argument
@@ -588,6 +622,8 @@ fn main {
                               (atomic_expression
                                 (literal
                                   (integer_literal))))))))))))))
+        (semicolon
+          (automatic_semicolon))
         (statement_expression
           (expression
             (pipeline_expression
@@ -613,6 +649,8 @@ fn main {
                         (simple_expression
                           (qualified_identifier
                             (lowercase_identifier)))))))))))
+        (semicolon
+          (automatic_semicolon))
         (statement_expression
           (expression
             (pipeline_expression
@@ -645,6 +683,8 @@ fn main {
                               (atomic_expression
                                 (literal
                                   (integer_literal))))))))))))))
+        (semicolon
+          (automatic_semicolon))
         (statement_expression
           (expression
             (pipeline_expression
@@ -677,6 +717,8 @@ fn main {
                             (simple_expression
                               (constructor_expression
                                 (uppercase_identifier)))))))))))))
+        (semicolon
+          (automatic_semicolon))
         (statement_expression
           (expression
             (pipeline_expression
@@ -716,6 +758,8 @@ fn main {
                                           (atomic_expression
                                             (literal
                                               (integer_literal))))))))))))))))))))
+        (semicolon
+          (automatic_semicolon))
         (statement_expression
           (expression
             (pipeline_expression
@@ -742,9 +786,9 @@ fn main {
                                             (lowercase_identifier)))
                                         (accessor
                                           (dot_identifier
-                                            (dot)))))
+                                            (dot_lowercase_identifier)))))
                                     (dot_identifier
-                                      (dot))))))))))
+                                      (dot_lowercase_identifier))))))))))
                     (dot_dot_identifier
                       (dot_dot))
                     (argument
@@ -756,4 +800,6 @@ fn main {
                                 (literal
                                   (string_literal
                                     (string_fragment
-                                      (unescaped_string_fragment))))))))))))))))))))
+                                      (unescaped_string_fragment))))))))))))))))
+        (semicolon
+          (automatic_semicolon))))))

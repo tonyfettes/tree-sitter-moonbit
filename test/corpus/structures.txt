@@ -44,6 +44,8 @@ fn init {
                             (atomic_expression
                               (literal
                                 (integer_literal)))))))))))))
+        (semicolon
+          (automatic_semicolon))
         (statement_expression
           (expression
             (pipeline_expression
@@ -80,4 +82,6 @@ fn init {
                           (simple_expression
                             (atomic_expression
                               (literal
-                                (integer_literal)))))))))))))))))
+                                (integer_literal)))))))))))))
+        (semicolon
+          (automatic_semicolon))))))

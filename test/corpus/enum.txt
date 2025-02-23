@@ -16,39 +16,52 @@ enum T {
         (uppercase_identifier))
       (enum_constructor
         (uppercase_identifier))
+      (semicolon
+        (automatic_semicolon))
       (enum_constructor
         (uppercase_identifier)
-        (type
-          (apply_type
-            (qualified_type_identifier
-              (identifier
-                (uppercase_identifier))))))
+        (constructor_parameter
+          (type
+            (apply_type
+              (qualified_type_identifier
+                (identifier
+                  (uppercase_identifier)))))))
+      (semicolon
+        (automatic_semicolon))
       (enum_constructor
         (uppercase_identifier)
-        (type
-          (apply_type
-            (qualified_type_identifier
-              (identifier
-                (uppercase_identifier)))))
+        (constructor_parameter
+          (type
+            (apply_type
+              (qualified_type_identifier
+                (identifier
+                  (uppercase_identifier))))))
         (comma)
-        (type
-          (apply_type
-            (qualified_type_identifier
-              (identifier
-                (uppercase_identifier))))))
+        (constructor_parameter
+          (type
+            (apply_type
+              (qualified_type_identifier
+                (identifier
+                  (uppercase_identifier)))))))
+      (semicolon
+        (automatic_semicolon))
       (enum_constructor
         (uppercase_identifier)
-        (type
-          (apply_type
-            (qualified_type_identifier
-              (identifier
-                (uppercase_identifier)))))
+        (constructor_parameter
+          (type
+            (apply_type
+              (qualified_type_identifier
+                (identifier
+                  (uppercase_identifier))))))
         (comma)
-        (parameter_label
-          (lowercase_identifier))
-        (colon)
-        (type
-          (apply_type
-            (qualified_type_identifier
-              (identifier
-                (uppercase_identifier)))))))))
+        (constructor_parameter
+          (parameter_label
+            (lowercase_identifier))
+          (colon)
+          (type
+            (apply_type
+              (qualified_type_identifier
+                (identifier
+                  (uppercase_identifier)))))))
+      (semicolon
+        (automatic_semicolon)))))
