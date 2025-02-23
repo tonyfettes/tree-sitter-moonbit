@@ -22,8 +22,7 @@
 ((qualified_identifier (lowercase_identifier) @variable.builtin)
  (#any-of? @variable.builtin
            "self"))
-((qualified_identifier (dot_identifier) @variable)
- (#lua-match? @variable "^\.[^A-Z]"))
+(qualified_identifier (dot_lowercase_identifier) @variable)
 
 (value_definition (lowercase_identifier) @variable)
 
@@ -33,7 +32,7 @@
 
 (const_definition (uppercase_identifier) @constant)
 
-((qualified_identifier (dot_identifier) @constant)
+((qualified_identifier (dot_lowercase_identifier) @constant)
  (#lua-match? @constant "^\.[A-Z]"))
 
 ;; Types
@@ -145,7 +144,7 @@
   "with"
 ] @keyword
 
-(derive) @keyword
+(derive_keyword) @keyword
 
 [ "fn" "test" "impl" ] @keyword.function
 "return" @keyword.return
@@ -165,7 +164,7 @@
 
 [
   ";"
-  ","
+  (comma)
 ] @punctuation.delimiter
 
 (colon) @punctuation.delimiter
