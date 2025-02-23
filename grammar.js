@@ -395,8 +395,8 @@ module.exports = grammar({
     ),
 
     unescaped_string_fragment: _ => choice(
-      token.immediate(/\\[^ntbr"\\{]/),
-      token.immediate(/[^"\\]+/),
+      token.immediate(prec(1, /\\[^ntbr'"\\{]/)),
+      token.immediate(prec(1, /[^"\\]+/)),
     ),
 
     escape_sequence: _ => choice(
@@ -618,8 +618,13 @@ module.exports = grammar({
       '}'
     ),
 
+    map_element_key: $ => choice(
+      $.literal,
+      seq('-', choice($.integer_literal, $.float_literal)),
+    ),
+
     map_element_expression: $ => seq(
-      $.literal, $.colon, $.expression,
+      $.map_element_key, $.colon, $.expression,
     ),
 
     as_expression: $ => seq(
@@ -864,6 +869,8 @@ module.exports = grammar({
       $.dot_dot,
       seq('(', $.pattern, ')'),
       $.literal,
+      seq('-', $.integer_literal),
+      seq('-', $.float_literal),
       $.lowercase_identifier,
       $.constructor_pattern,
       $.tuple_pattern,
@@ -930,7 +937,12 @@ module.exports = grammar({
       '}',
     ),
 
-    map_element_pattern: $ => seq($.literal, optional($.question_operator), $.colon, $.pattern),
+    map_element_pattern: $ => seq(
+      $.map_element_key,
+      optional($.question_operator),
+      $.colon,
+      $.pattern
+    ),
 
     empty_struct_or_map_pattern: _ => seq('{', '}'),
 
