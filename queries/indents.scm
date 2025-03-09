@@ -5,6 +5,9 @@
   (nonempty_block_expression)
   (struct_expression)
   (structure_item)
+  (map_expression)
+  (enum_constructor_payload)
+  (parameters)
 ] @indent.begin
 
 [
