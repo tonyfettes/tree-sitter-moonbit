@@ -27,15 +27,101 @@ _Static_assert(sizeof(struct ScannerState) <=
                "Context too large");
 #endif
 
-enum TokenType {
-  SCANNER_RESET,
-  AUTOMATIC_SEMICOLON,
-  SEMICOLON,
-  MULTILINE_STRING_SEPARATOR,
-  MULTILINE_INTERPOLATION_SEPARATOR,
-  FLOAT_LITERAL,
-  FOR_KEYWORD,
-  ERROR_SENTINEL,
+enum TokenKind {
+  TOKEN_WITH,
+  TOKEN_WHILE,
+  TOKEN_UNDERSCORE,
+  TOKEN_UIDENT,
+  TOKEN_TYPEALIAS,
+  TOKEN_TYPE,
+  TOKEN_TRY,
+  TOKEN_TRUE,
+  TOKEN_TRAITALIAS,
+  TOKEN_TRAIT,
+  TOKEN_THROW,
+  TOKEN_THIN_ARROW,
+  TOKEN_TEST,
+  TOKEN_STRUCT,
+  TOKEN_STRING,
+  TOKEN_SEMI,
+  TOKEN_RPAREN,
+  TOKEN_RETURN,
+  TOKEN_READONLY,
+  TOKEN_RBRACKET,
+  TOKEN_RBRACE,
+  TOKEN_RANGE_INCLUSIVE,
+  TOKEN_RANGE_EXCLUSIVE,
+  TOKEN_RAISE,
+  TOKEN_QUESTION,
+  TOKEN_PUB,
+  TOKEN_PRIV,
+  TOKEN_POST_LABEL,
+  TOKEN_PLUS,
+  TOKEN_PIPE,
+  TOKEN_PACKAGE_NAME,
+  TOKEN_NEWLINE,
+  TOKEN_MUTABLE,
+  TOKEN_MULTILINE_STRING,
+  TOKEN_MULTILINE_INTERP,
+  TOKEN_MINUS,
+  TOKEN_MATCH,
+  TOKEN_LPAREN,
+  TOKEN_LOOP,
+  TOKEN_LIDENT,
+  TOKEN_LET,
+  TOKEN_LBRACKET,
+  TOKEN_LBRACE,
+  TOKEN_IS,
+  TOKEN_INTERP,
+  TOKEN_INT,
+  TOKEN_INFIX4,
+  TOKEN_INFIX3,
+  TOKEN_INFIX2,
+  TOKEN_INFIX1,
+  TOKEN_IN,
+  TOKEN_IMPORT,
+  TOKEN_IMPL,
+  TOKEN_IF,
+  TOKEN_GUARD,
+  TOKEN_FOR,
+  TOKEN_FNALIAS,
+  TOKEN_FN,
+  TOKEN_FLOAT,
+  TOKEN_FAT_ARROW,
+  TOKEN_FALSE,
+  TOKEN_EXTERN,
+  TOKEN_EXCLAMATION,
+  TOKEN_EQUAL,
+  TOKEN_EOF,
+  TOKEN_ENUM,
+  TOKEN_ELSE,
+  TOKEN_ELLIPSIS,
+  TOKEN_DOT_UIDENT,
+  TOKEN_DOT_LPAREN,
+  TOKEN_DOT_LIDENT,
+  TOKEN_DOT_INT,
+  TOKEN_DOTDOT,
+  TOKEN_DERIVE,
+  TOKEN_CONTINUE,
+  TOKEN_CONST,
+  TOKEN_COMMENT,
+  TOKEN_COMMA,
+  TOKEN_COLONCOLON,
+  TOKEN_COLON,
+  TOKEN_CHAR,
+  TOKEN_CATCH,
+  TOKEN_CARET,
+  TOKEN_BYTES,
+  TOKEN_BYTE,
+  TOKEN_BREAK,
+  TOKEN_BARBAR,
+  TOKEN_BAR,
+  TOKEN_AUGMENTED_ASSIGNMENT,
+  TOKEN_ATTRIBUTE,
+  TOKEN_ASYNC,
+  TOKEN_AS,
+  TOKEN_AMPERAMPER,
+  TOKEN_AMPER,
 };
 
 #ifdef DEBUG
@@ -392,135 +478,198 @@ static bool trace_valid_symbols(const bool *valid_symbols) {
 #define trace_valid_symbols(...)
 #endif
 
-bool tree_sitter_moonbit_external_scanner_scan(void *payload, TSLexer *lexer,
-                                               const bool *valid_symbols) {
-  struct ScannerState *context = (struct ScannerState *)payload;
-
-  trace("==========\n");
-  tracef("lookahead: %c @ %d\n", lexer->lookahead, lexer->get_column(lexer));
-  trace_valid_symbols(valid_symbols);
-
-  if (lexer->eof(lexer)) {
-    return false;
-  }
-
-  if (valid_symbols[ERROR_SENTINEL]) {
-    return false;
-  }
-
-  if (valid_symbols[FLOAT_LITERAL]) {
-    switch (scan_float_literal(lexer, valid_symbols)) {
-    case FLOAT_LITERAL_OK:
-      lexer->mark_end(lexer);
-      lexer->result_symbol = FLOAT_LITERAL;
-      trace("parsed float_literal\n");
-      return true;
-    case FLOAT_LITERAL_ERR:
-      return false;
-    case FLOAT_LITERAL_NOT:
-      break;
-    }
-  }
-
-  if (valid_symbols[MULTILINE_STRING_SEPARATOR] ||
-      valid_symbols[MULTILINE_INTERPOLATION_SEPARATOR]) {
-    skip_spaces(lexer, valid_symbols);
-    tracef("multiline: lookahead: %c @ %d\n", lexer->lookahead,
-           lexer->get_column(lexer));
-    if (valid_symbols[MULTILINE_STRING_SEPARATOR] && lexer->lookahead == '#') {
-      advance(lexer);
-      if (lexer->lookahead == '|') {
-        advance(lexer);
-        lexer->result_symbol = MULTILINE_STRING_SEPARATOR;
-        lexer->mark_end(lexer);
-        context->multiline_string = true;
-        tracef("setting multiline_string to %s\n", "true");
-        trace("parsed multiline_string_separator\n");
-        return true;
-      }
-    } else if (valid_symbols[MULTILINE_INTERPOLATION_SEPARATOR] &&
-               lexer->lookahead == '$') {
-      advance(lexer);
-      if (lexer->lookahead == '|') {
-        advance(lexer);
-        lexer->result_symbol = MULTILINE_INTERPOLATION_SEPARATOR;
-        lexer->mark_end(lexer);
-        context->multiline_string = true;
-        trace("parsed multiline_interpolation_separator\n");
-        return true;
-      }
-    }
-  }
-
-  if (valid_symbols[FOR_KEYWORD]) {
-    skip_spaces(lexer, valid_symbols);
-    if (test_symbol(lexer, "for")) {
-      lexer->result_symbol = FOR_KEYWORD;
-      lexer->mark_end(lexer);
-      context->remove_semi = true;
-      trace("parsed for_keyword\n");
-      return true;
-    }
-  }
-
-  if (valid_symbols[SEMICOLON]) {
-    skip_spaces(lexer, valid_symbols);
-    tracef("lookahead: %c @ %d\n", lexer->lookahead, lexer->get_column(lexer));
-    if (lexer->lookahead == ';') {
-      advance(lexer);
-      lexer->result_symbol = SEMICOLON;
-      lexer->mark_end(lexer);
-      context->remove_semi = true;
-      trace("parsed semicolon\n");
-      return true;
-    }
-  }
-
-  if (valid_symbols[AUTOMATIC_SEMICOLON]) {
-    while (iswblank(lexer->lookahead)) {
-      skip(lexer);
-    }
-    tracef("lookahead: %c @ %d\n", lexer->lookahead, lexer->get_column(lexer));
-    if (lexer->lookahead != '\n') {
+static inline bool scan_string(TSLexer *lexer, const char *expected) {
+  for (size_t i = 0; expected[i]; i++) {
+    if (lexer->lookahead != expected[i]) {
       return false;
     }
     advance(lexer);
-    lexer->result_symbol = AUTOMATIC_SEMICOLON;
-    lexer->mark_end(lexer);
-    tracef("lookahead: %c @ %d\n", lexer->lookahead, lexer->get_column(lexer));
-    while (iswspace(lexer->lookahead)) {
-      advance(lexer);
-    }
-    tracef("lookahead: %c @ %d\n", lexer->lookahead, lexer->get_column(lexer));
-    enum AsiResult insert_semi = can_insert_semi(lexer, context);
-    tracef("insert_semi: %s\n", asi_result_to_string[insert_semi]);
-    tracef("remove_semi: %s\n", context->remove_semi ? "true" : "false");
-    tracef("multiline  : %s\n", context->multiline_string ? "true" : "false");
-    if (insert_semi == ASI_SKIP) {
+  }
+  return true;
+}
+
+static inline bool scan_char(TSLexer *lexer, char expected) {
+  if (lexer->lookahead != expected) {
+    return false;
+  }
+  advance(lexer);
+  return true;
+}
+
+static inline bool scan_word_end(TSLexer *lexer) {
+  if (iswalnum(lexer->lookahead) || lexer->lookahead == '_') {
+    return false;
+  } else {
+    return true;
+  }
+}
+
+static inline bool scan_symbol(TSLexer *lexer, const char *expected) {
+  return scan_string(lexer, expected) && scan_word_end(lexer);
+}
+
+bool tree_sitter_moonbit_external_scanner_scan(void *payload, TSLexer *lexer,
+                                               const bool *valid_symbols) {
+  switch (lexer->lookahead) {
+  case 'a':
+    advance(lexer);
+    if (!scan_string(lexer, "s")) {
       return false;
     }
-    if (context->remove_semi) {
-      insert_semi = ASI_REMOVE;
+    switch (lexer->lookahead) {
+    case 'y':
+      advance(lexer);
+      if (!scan_symbol(lexer, "nc")) {
+        return false;
+      }
+      lexer->result_symbol = TOKEN_ASYNC;
+      lexer->mark_end(lexer);
+      return true;
+    default:
+      if (!scan_word_end(lexer)) {
+        return false;
+      }
+      lexer->result_symbol = TOKEN_AS;
+      lexer->mark_end(lexer);
+      return true;
     }
-    if (context->remove_semi || context->multiline_string) {
-      tree_sitter_moonbit_external_scanner_reset(context);
-      if (insert_semi == false) {
-        lexer->result_symbol = SCANNER_RESET;
-        trace("parsed automatic_newline\n");
+  case 'c':
+    advance(lexer);
+    switch (lexer->lookahead) {
+    case 'a':
+      advance(lexer);
+      if (!scan_symbol(lexer, "tch")) {
+        return false;
+      }
+      lexer->result_symbol = TOKEN_CATCH;
+      lexer->mark_end(lexer);
+      return true;
+    case 'o':
+      advance(lexer);
+      scan_string(lexer, "n");
+      switch (lexer->lookahead) {
+      case 't':
+        advance(lexer);
+        if (!scan_symbol(lexer, "inue")) {
+          return false;
+        }
+        lexer->result_symbol = TOKEN_CONTINUE;
+        lexer->mark_end(lexer);
+        return true;
+      case 's':
+        advance(lexer);
+        if (!scan_symbol(lexer, "t")) {
+          return false;
+        }
+        lexer->result_symbol = TOKEN_CONST;
+        lexer->mark_end(lexer);
         return true;
       }
     }
-    return insert_semi == ASI_INSERT;
-  }
-
-  if (valid_symbols[SCANNER_RESET] && context->remove_semi) {
-    lexer->result_symbol = SCANNER_RESET;
+  case 'd':
+    advance(lexer);
+    if (!scan_symbol(lexer, "erive")) {
+      return false;
+    }
+    lexer->result_symbol = TOKEN_DERIVE;
     lexer->mark_end(lexer);
-    trace("parsed automatic_newline\n");
-    context->remove_semi = false;
-    tree_sitter_moonbit_external_scanner_reset(context);
     return true;
+  case 'e':
+    advance(lexer);
+    switch (lexer->lookahead) {
+    case 'l':
+      advance(lexer);
+      if (!scan_symbol(lexer, "se")) {
+        return false;
+      }
+      lexer->result_symbol = TOKEN_ELSE;
+      lexer->mark_end(lexer);
+      return true;
+    case 'x':
+      advance(lexer);
+      if (!scan_string(lexer, "tern")) {
+        return false;
+      }
+      lexer->result_symbol = TOKEN_EXTERN;
+      lexer->mark_end(lexer);
+      return true;
+    case 'n':
+      advance(lexer);
+      if (!scan_symbol(lexer, "um")) {
+        return false;
+      }
+      lexer->result_symbol = TOKEN_ENUM;
+      lexer->mark_end(lexer);
+      return true;
+    default:
+      return false;
+    }
+  case 'f':
+    advance(lexer);
+    switch (lexer->lookahead) {
+    case 'a':
+      advance(lexer);
+      if (!scan_string(lexer, "lse")) {
+        return false;
+      }
+      lexer->result_symbol = TOKEN_FALSE;
+      lexer->mark_end(lexer);
+      return true;
+    case 'n':
+      advance(lexer);
+      switch (lexer->lookahead) {
+      case 'a':
+        advance(lexer);
+        if (!scan_symbol(lexer, "lias")) {
+          return false;
+        }
+        lexer->result_symbol = TOKEN_FNALIAS;
+        lexer->mark_end(lexer);
+        return true;
+      default:
+        if (!scan_word_end(lexer)) {
+          return false;
+        }
+        lexer->result_symbol = TOKEN_FN;
+        lexer->mark_end(lexer);
+        return true;
+      }
+    case 'o':
+      advance(lexer);
+      if (scan_symbol(lexer, "r")) {
+        lexer->result_symbol = TOKEN_FOR;
+        lexer->mark_end(lexer);
+        return true;
+      } else {
+        return false;
+      }
+    default:
+      return false;
+    }
+  case 'w':
+    advance(lexer);
+    switch (lexer->lookahead) {
+    case 'i':
+      advance(lexer);
+      if (scan_symbol(lexer, "th")) {
+        lexer->result_symbol = TOKEN_WITH;
+        lexer->mark_end(lexer);
+        return true;
+      } else {
+        return false;
+      }
+    case 'h':
+      advance(lexer);
+      if (scan_symbol(lexer, "ile")) {
+        lexer->result_symbol = TOKEN_WHILE;
+        lexer->mark_end(lexer);
+        return true;
+      } else {
+        return false;
+      }
+    default:
+      return false;
+    }
+    break;
   }
-
-  return false;
 }
