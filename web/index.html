@@ -125,7 +125,7 @@
       flex: 0 0 auto;
     }
 
-    #query-container .CodeMirror {
+    #query-container .cm-editor {
       flex: 1;
       position: relative;
       min-height: 0;
@@ -155,7 +155,7 @@
       background-color: var(--panel-bg);
     }
 
-    .CodeMirror {
+    & .cm-editor {
       position: absolute;
       top: 0;
       left: 0;
@@ -167,6 +167,20 @@
       line-height: 1.6;
       background-color: var(--code-bg) !important;
       color: var(--text-color) !important;
+    }
+
+    & .cm-editor.cm-focused {
+      outline: none;
+    }
+
+    & .cm-content {
+      font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+      font-size: 14px;
+    }
+
+    & .cm-activeLine,
+    & .cm-activeLineGutter {
+      background-color: transparent !important;
     }
 
     .query-error {
@@ -300,23 +314,24 @@
         color: red;
       }
 
-      & .CodeMirror {
+      & .cm-editor {
         background-color: var(--dark-code-bg) !important;
         color: var(--dark-text) !important;
       }
 
-      & .CodeMirror-gutters {
+      & .cm-gutters {
         background-color: var(--dark-panel-bg) !important;
         border-color: var(--dark-border) !important;
       }
 
-      & .CodeMirror-cursor {
+      & .cm-cursor {
         border-color: var(--dark-text) !important;
       }
 
-      & .CodeMirror-selected {
+      & .cm-selectionBackground {
         background-color: rgba(255, 255, 255, 0.1) !important;
       }
+
     }
   </style>
   </body>
