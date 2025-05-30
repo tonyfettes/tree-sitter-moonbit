@@ -27,13 +27,15 @@ const CodeMirror: React.FC<CodeMirrorProps> = ({ value, onChange }) => {
       return;
     }
     if (editorRef.current) {
-      editorRef.current.dispatch({
-        changes: {
-          from: 0,
-          to: editorRef.current.state.doc.length,
-          insert: value,
-        },
-      });
+      if (value !== editorRef.current.state.doc.toString()) {
+        editorRef.current.dispatch({
+          changes: {
+            from: 0,
+            to: editorRef.current.state.doc.length,
+            insert: value,
+          },
+        });
+      }
     }
   }, [value, onChange]);
 

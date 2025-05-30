@@ -1,11 +1,11 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom/client";
-import ThemeToggle from "./components/ThemeToggle";
+import Playground from "./components/Playground";
 
-window.addEventListener("DOMContentLoaded", () => {
-  ReactDOM.createRoot(document.getElementById("theme-toggle")!).render(
+document.addEventListener("DOMContentLoaded", () => {
+  ReactDOM.createRoot(document.getElementById("playground")!).render(
     <React.StrictMode>
-      <ThemeToggle />
+      <Playground />
     </React.StrictMode>
   );
 });
