@@ -1,93 +1,12 @@
-<head>
-  <meta charset="utf-8">
-  <title>tree-sitter MoonBit</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/clusterize.js/0.19.0/clusterize.min.css">
-  <link rel="icon" type="image/png" href="https://tree-sitter.github.io/tree-sitter/assets/images/favicon-32x32.png"
-    sizes="32x32" />
-  <link rel="icon" type="image/png" href="https://tree-sitter.github.io/tree-sitter/assets/images/favicon-16x16.png"
-    sizes="16x16" />
-  <script src="index.js"></script>
-</head>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>tree-sitter MoonBit</title>
+    <script src="index.js" type="module"></script>
+  </head>
 
-<body>
-  <div id="playground-container" style="visibility: hidden;">
-    <header>
-      <div class="header-item">
-        <span class="language-name">Language: MoonBit</span>
-      </div>
-
-      <div class="header-item">
-        <input id="logging-checkbox" type="checkbox">
-        <label for="logging-checkbox">log</label>
-      </div>
-
-      <div class="header-item">
-        <input id="anonymous-nodes-checkbox" type="checkbox">
-        <label for="anonymous-nodes-checkbox">show anonymous nodes</label>
-      </div>
-
-      <div class="header-item">
-        <input id="query-checkbox" type="checkbox">
-        <label for="query-checkbox">query</label>
-      </div>
-
-      <div class="header-item">
-        <input id="accessibility-checkbox" type="checkbox">
-        <label for="accessibility-checkbox">accessibility</label>
-      </div>
-
-      <div class="header-item">
-        <label for="update-time">parse time: </label>
-        <span id="update-time"></span>
-      </div>
-
-      <div class="header-item">
-        <a href="https://tree-sitter.github.io/tree-sitter/7-playground.html#about">(?)</a>
-      </div>
-
-      <select id="language-select">
-        <option value="moonbit">MoonBit</option>
-        <option value="mbtq">MBTQ</option>
-      </select>
-
-      <div class="header-item">
-        <div id="theme-toggle"></div>
-      </div>
-    </header>
-
-    <main>
-      <div id="input-pane">
-        <div class="panel-header">Code</div>
-        <div id="code-container">
-          <textarea id="code-input"></textarea>
-        </div>
-
-        <div id="query-container" style="visibility: hidden; position: absolute;">
-          <div class="panel-header">Query</div>
-          <textarea id="query-input"></textarea>
-        </div>
-      </div>
-
-      <div id="output-container-scroll">
-        <div class="panel-header">Tree</div>
-        <pre id="output-container" class="highlight"></pre>
-      </div>
-    </main>
-  </div>
-
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous">
-  </script>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/clusterize.js/0.19.0/clusterize.min.js"></script>
-
-  <script type="module" src="playground.js"></script>
-  <script type="module">
-    import * as TreeSitter from './web-tree-sitter.js';
-    window.TreeSitter = TreeSitter;
-    setTimeout(() => window.initializePlayground({local: true}), 1)
-  </script>
+  <body>
+    <div id="playground"></div>
 
   <style>
     /* Base Variables */
@@ -136,7 +55,8 @@
     body {
       margin: 0;
       padding: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
       background-color: var(--bg-color);
       color: var(--text-color);
     }
@@ -399,4 +319,5 @@
       }
     }
   </style>
-</body>
+  </body>
+</html>

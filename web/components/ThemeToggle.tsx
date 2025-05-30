@@ -24,6 +24,7 @@ const ThemeToggle: React.FC = () => {
 
   React.useEffect(() => {
     localStorage.setItem("theme", theme);
+    document.documentElement.setAttribute("data-theme", theme);
   }, [theme]);
 
   function handleThemeChange() {

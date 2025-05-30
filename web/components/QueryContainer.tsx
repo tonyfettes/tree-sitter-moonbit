@@ -1,27 +1,18 @@
 import CodeMirror from "./CodeMirror.tsx";
-import * as TS from "web-tree-sitter";
 import * as React from "react";
 
 type QueryContainerProps = {
-  parser: TS.Parser;
+  onChange?: (query: string) => void;
 };
 
-const QueryContainer: React.FC<QueryContainerProps> = ({ parser }) => {
-  const [, setQuery] = React.useState<TS.Query | null>(null);
-
-  const handleQueryChange = (value: string) => {
-    if (parser.language) {
-      setQuery(new TS.Query(parser.language, value));
-    }
-  };
-
+const QueryContainer: React.FC<QueryContainerProps> = ({ onChange }) => {
   return (
     <div
       id="query-container"
       style={{ visibility: "hidden", position: "absolute" }}
     >
       <div className="panel-header">Query</div>
-      <CodeMirror value="" onChange={handleQueryChange} />
+      <CodeMirror value="" onChange={onChange} />
     </div>
   );
 };

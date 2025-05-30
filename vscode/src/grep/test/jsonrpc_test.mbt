@@ -82,6 +82,48 @@ test "grep" {
         ,
       },
     },
+    {
+      "jsonrpc": "2.0",
+      "id": "238de69c-5f9b-418e-aeec-14769d67d883",
+      "method": "search",
+      "params": {
+        "query": "pub",
+        "content": #|// Copyright 2025 International Digital Economy Academy
+        #|//
+        #|// Licensed under the Apache License, Version 2.0 (the "License");
+        #|// you may not use this file except in compliance with the License.
+        #|// You may obtain a copy of the License at
+        #|//
+        #|//     http://www.apache.org/licenses/LICENSE-2.0
+        #|//
+        #|// Unless required by applicable law or agreed to in writing, software
+        #|// distributed under the License is distributed on an "AS IS" BASIS,
+        #|// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+        #|// See the License for the specific language governing permissions and
+        #|// limitations under the License.
+        #|
+        #|///|
+        #|test "unsafe_pop_front after many push_front" {
+        #|  let dq = new()
+        #|  for i in 0..<10 {
+        #|    dq.push_front(i)
+        #|  }
+        #|  for i in 0..<10 {
+        #|    dq.unsafe_pop_front()
+        #|  }
+        #|  assert_eq(dq.head, dq.tail)
+        #|}
+        #|
+        #|///|
+        #|test "truncate zero" {
+        #|  let dq = of([1, 2, 3])
+        #|  dq.truncate(0)
+        #|  assert_eq(dq.len, 0)
+        #|  assert_eq(dq.head, dq.tail)
+        #|}
+        ,
+      },
+    },
   ]
   let request = requests
     .map(fn(request) { request.to_json().stringify() })
@@ -234,6 +276,11 @@ test "grep" {
         "id": 5,
       },
       { "jsonrpc": "2.0", "result": null, "id": 5 },
+      {
+        "jsonrpc": "2.0",
+        "result": null,
+        "id": "238de69c-5f9b-418e-aeec-14769d67d883",
+      },
     ])
   })
 }

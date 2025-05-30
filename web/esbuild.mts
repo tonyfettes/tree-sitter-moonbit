@@ -51,7 +51,9 @@ const context = await ESBuild.context({
   entryPoints: ["index.tsx", "playground.ts"],
   bundle: true,
   format: "esm",
+  platform: "browser",
   outdir: ".",
+  external: ["fs/promises", "module"],
   plugins: [
     downloadAssets([
       {
