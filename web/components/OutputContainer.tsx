@@ -8,7 +8,7 @@ type OutputContainerProps = {
 
 const OutputContainer: React.FC<OutputContainerProps> = ({ tree }) => {
   return (
-    <pre className="highlight">
+    <pre id="output-container" className="highlight">
       {tree ? (
         <TreeRow
           indent={0}
