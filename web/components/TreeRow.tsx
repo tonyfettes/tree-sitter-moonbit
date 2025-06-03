@@ -16,6 +16,7 @@ const TreeRow: React.FC<TreeRowProps> = ({
   highlighted,
   onClick,
 }) => {
+  const aRef = React.useRef<HTMLAnchorElement>(null);
   let className = node.isError
     ? "node-link error"
     : node.isMissing
@@ -25,6 +26,11 @@ const TreeRow: React.FC<TreeRowProps> = ({
     : "node-link anonymous";
   if (highlighted.has(node.id)) {
     className += " highlighted";
+    aRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "nearest",
+      inline: "nearest",
+    });
   }
   const displayName = node.isMissing
     ? node.isNamed
@@ -40,6 +46,7 @@ const TreeRow: React.FC<TreeRowProps> = ({
       {"  ".repeat(indent)}
       {fieldName}
       <a
+        ref={aRef}
         className={className}
         href="#"
         data-id={node.id}
