@@ -6,6 +6,7 @@ type TreeRowProps = {
   field: string | null;
   node: TS.Node;
   highlighted: Map<number, boolean>;
+  onClick?: (nodeId: number, startIndex: number, endIndex: number) => void;
 };
 
 const TreeRow: React.FC<TreeRowProps> = ({
@@ -13,6 +14,7 @@ const TreeRow: React.FC<TreeRowProps> = ({
   field,
   node,
   highlighted,
+  onClick,
 }) => {
   let className = node.isError
     ? "node-link error"
@@ -42,6 +44,13 @@ const TreeRow: React.FC<TreeRowProps> = ({
         href="#"
         data-id={node.id}
         data-range={dataRange}
+        onClick={(e) => {
+          e.preventDefault();
+          console.log(
+            `Clicked node: ${node.id}, range: ${dataRange}, type: ${node.type}`
+          );
+          onClick?.(node.id, node.startIndex, node.endIndex);
+        }}
       >
         {displayName}
       </a>
@@ -59,6 +68,7 @@ const TreeRow: React.FC<TreeRowProps> = ({
                 field={node.fieldNameForChild(index)}
                 node={child}
                 highlighted={highlighted}
+                onClick={onClick}
               />
             )
           );

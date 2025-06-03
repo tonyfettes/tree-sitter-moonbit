@@ -6,6 +6,7 @@ import QueryContainer from "./QueryContainer";
 import PanelHeader from "./PanelHeader";
 import OutputContainer from "./OutputContainer";
 import CodeContainer from "./CodeContainer";
+import * as CMState from "@codemirror/state";
 
 const Playground: React.FC = () => {
   const [visible, setVisible] = React.useState<boolean>(false);
@@ -13,6 +14,9 @@ const Playground: React.FC = () => {
   const [language, setLanguage] = React.useState<string | null>(null);
   const [tree, setTree] = React.useState<TS.Tree | null>(null);
   const [code, setCode] = React.useState<string>("");
+  const [selections, setSelections] = React.useState<
+    readonly CMState.SelectionRange[] | undefined
+  >(undefined);
 
   React.useEffect(() => {
     setLanguage("moonbit");
@@ -116,10 +120,9 @@ const Playground: React.FC = () => {
           <PanelHeader>Code</PanelHeader>
           <CodeContainer
             value={code}
-            onChange={(code) => {
-              console.log("Code changed:", code);
-              setCode(code);
-            }}
+            selections={selections}
+            onChange={setCode}
+            onSelect={setSelections}
           />
 
           <QueryContainer />
@@ -127,7 +130,16 @@ const Playground: React.FC = () => {
 
         <div id="output-container-scroll">
           <PanelHeader>Tree</PanelHeader>
-          <OutputContainer tree={tree} />
+          <OutputContainer
+            tree={tree}
+            selections={selections}
+            onClick={(nodeId, startIndex, endIndex) => {
+              console.log("Node clicked:", nodeId, startIndex, endIndex);
+              setSelections([
+                CMState.EditorSelection.range(startIndex, endIndex),
+              ]);
+            }}
+          />
         </div>
       </main>
     </div>
