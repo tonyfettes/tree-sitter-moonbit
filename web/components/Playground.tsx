@@ -7,27 +7,20 @@ import PanelHeader from "./PanelHeader";
 import OutputContainer from "./OutputContainer";
 import CodeContainer from "./CodeContainer";
 import * as CMState from "@codemirror/state";
+import Checkbox from "./Checkbox";
 
 const Playground: React.FC = () => {
   const [visible, setVisible] = React.useState<boolean>(false);
   const parserRef = React.useRef<TS.Parser>(null);
-  const [language, setLanguage] = React.useState<string | null>(null);
+  const [language, setLanguage] = React.useState<string>("moonbit");
   const [tree, setTree] = React.useState<TS.Tree | null>(null);
   const [code, setCode] = React.useState<string>("");
   const [selections, setSelections] = React.useState<
     readonly CMState.SelectionRange[] | undefined
   >(undefined);
-
-  React.useEffect(() => {
-    setLanguage("moonbit");
-  }, []);
-
-  React.useEffect(() => {
-    TS.Parser.init().then(() => {
-      setVisible(true);
-      parserRef.current = new TS.Parser();
-    });
-  }, []);
+  const [queryEnabled, setQueryEnabled] = React.useState<boolean>(false);
+  const [queryText, setQueryText] = React.useState<string>("");
+  const [query, setQuery] = React.useState<TS.Query | null>(null);
 
   React.useEffect(() => {
     if (parserRef.current) {
@@ -37,6 +30,19 @@ const Playground: React.FC = () => {
           return;
         }
         parserRef.current.setLanguage(language);
+      });
+    } else {
+      TS.Parser.init().then(() => {
+        setVisible(true);
+        parserRef.current = new TS.Parser();
+        TS.Language.load(`tree-sitter-${language}.wasm`).then((language) => {
+          if (!parserRef.current) {
+            console.error("Parser is not initialized");
+            return;
+          }
+          parserRef.current.setLanguage(language);
+          console.log("Parser initialized with language:", language.name);
+        });
       });
     }
   }, [language]);
@@ -56,6 +62,21 @@ const Playground: React.FC = () => {
       setTree(null);
     }
   }, [code]);
+
+  React.useEffect(() => {
+    if (parserRef.current && queryText) {
+      const language = parserRef.current.language;
+      if (!language) {
+        return;
+      }
+      try {
+        setQuery(new TS.Query(language, queryText));
+      } catch (error) {
+        console.error("Error creating query:", error);
+        setQuery(null);
+      }
+    }
+  }, [queryText]);
 
   return (
     <div
@@ -78,8 +99,9 @@ const Playground: React.FC = () => {
         </div>
 
         <div className="header-item">
-          <input id="query-checkbox" type="checkbox" />
-          <label htmlFor="query-checkbox">query</label>
+          <Checkbox value={queryEnabled} onChange={setQueryEnabled}>
+            query
+          </Checkbox>
         </div>
 
         <div className="header-item">
@@ -125,7 +147,11 @@ const Playground: React.FC = () => {
             onSelect={setSelections}
           />
 
-          <QueryContainer />
+          <QueryContainer
+            value={queryText}
+            onChange={setQueryText}
+            visible={queryEnabled}
+          />
         </div>
 
         <div id="output-container-scroll">

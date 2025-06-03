@@ -1,10 +1,12 @@
 import * as CM from "codemirror";
 import * as CMState from "@codemirror/state";
 import * as React from "react";
+import * as Mark from "./mark";
 
 type CodeMirrorProps = {
   value: string;
   selections?: readonly CMState.SelectionRange[];
+  markers?: readonly { range: CMState.SelectionRange; style: string }[];
   onChange?: (value: string) => void;
   onSelect?: (selections: readonly CMState.SelectionRange[]) => void;
 };
@@ -12,6 +14,7 @@ type CodeMirrorProps = {
 const CodeMirror: React.FC<CodeMirrorProps> = ({
   value,
   selections,
+  markers,
   onChange,
   onSelect,
 }) => {
@@ -24,7 +27,7 @@ const CodeMirror: React.FC<CodeMirrorProps> = ({
     }
     editorRef.current = new CM.EditorView({
       doc: "",
-      extensions: [CM.basicSetup],
+      extensions: [CM.basicSetup, Mark.Field],
       parent: parentRef.current!,
     });
   }, []);
@@ -36,6 +39,7 @@ const CodeMirror: React.FC<CodeMirrorProps> = ({
       editorRef.current.dispatch({
         effects: CMState.StateEffect.reconfigure.of([
           CM.basicSetup,
+          Mark.Field,
           CM.EditorView.updateListener.of((update) => {
             if (update.docChanged && onChange) {
               onChange(update.state.doc.toString());
@@ -110,6 +114,22 @@ const CodeMirror: React.FC<CodeMirrorProps> = ({
       });
     }
   }, [selections]);
+
+  React.useEffect(() => {
+    if (!editorRef.current || !markers) {
+      return;
+    }
+    const effects = markers.map((marker) => {
+      return Mark.Effect.of({
+        from: marker.range.from,
+        to: marker.range.to,
+        style: marker.style,
+      });
+    });
+    editorRef.current.dispatch({
+      effects,
+    });
+  }, [markers]);
 
   return <div ref={parentRef} />;
 };

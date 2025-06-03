@@ -1,16 +1,22 @@
 import * as React from "react";
 
 type CheckboxProps = {
-  label: string;
-  checked: boolean;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  value: boolean;
+  onChange: (value: boolean) => void;
+  children: string;
 };
 
-const Checkbox: React.FC<CheckboxProps> = () => {
+const Checkbox: React.FC<CheckboxProps> = ({ value, onChange, children }) => {
+  const inputId = React.useId();
   return (
     <div>
-      <input type="checkbox" id="checkbox" />
-      <label htmlFor="checkbox">Checkbox</label>
+      <input
+        type="checkbox"
+        id={inputId}
+        checked={value}
+        onChange={(e) => onChange(e.target.checked)}
+      />
+      <label htmlFor={inputId}>{children}</label>
     </div>
   );
 };
